@@ -1,0 +1,118 @@
+feature file - to write scnearios in a human readable format
+step definition file - to write the code for the steps mentioned in the feature file
+test runner class - to run the feature file and generate the reports
+
+@Given("user is able to access HRMS application")
+public void user_is_able_to_access_hrms_application() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+@When("user enters valid admin username and password")
+public void user_enters_valid_admin_username_and_password() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+@When("user clicks on login button")
+public void user_clicks_on_login_button() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+@Then("user is able to login successfully")
+public void user_is_able_to_login_successfully() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+rules to remeber for implementing the steps in step definition file
+- we should not change the steps after creating the step definition file
+- there should be only one-step definition to one step
+- we should not have duplicate steps in the feature file
+- we should not have duplicate step definitions in the step definition file
+
+components of cucumber -
+feature file
+step definition
+runner class
+
+why do we need to keep config reader, constants class and common method class under utils?
+because these 3 classes are utility classes and we can use them in any part of the framework,
+so we keep them under utils package to maintain the structure of the framework and to avoid confusion.
+
+for adding the employee from feature file -
+@When("user enters employee {string} and {string} and {string} values")
+public void user_enters_employee_and_and_values(String string, String string2, String string3) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+background - to write the common steps for all the scenarios in the feature file until the flow is same
+once the flow is broken, we can not use background and we have to write the steps in each scenario
+
+for every feature file, the background will be different because the flow will be different for
+different feature files, but the hooks will be same for all the feature files because the hooks are related to the setup and teardown of the framework which is common for all the feature files.
+
+before every single scenario of the feature file, the background will be executed first and then the steps of the scenario will be executed, but the hooks will be executed only one time before the
+execution of the feature file and after the execution of the feature file.
+
+Hooks - to write the code for setup and teardown of the framework
+@Before - to write the code for setup of the framework
+@After - to write the code for teardown of the framework
+
+Hooks class will always be created under steps package
+because all the steps are available under steps package and we can use the hooks in any step definition file,
+so we keep the hooks class under steps package to maintain the structure of the framework and to avoid confusion.
+
+Hooks vs Background -
+hooks will be executed before background
+hooks will be same for all feature files but background will be different for different feature files
+hooks will be executed only one time but background will be executed multiple times for each scenario
+
+WHAT IS THE FLOW OF EXECUTION -
+Hooks (pre condition) -> Background -> Scenario Steps -> Hooks (post condition)
+
+data driven testing - to execute the same test case with multiple sets of data
+when your once scenario executes  against multiple sets of data, then it is called data driven testing
+examples table - to execute the same scenario with multiple sets of data
+data table - to execute the same step with multiple sets of data
+
+hooks execute  one time, background execute one time but step execute multiple times in case of data table
+because in data table we are passing the data in the form of table and we are iterating the table to get
+the data and execute the step multiple times for each set of data.
+
+@When("user enters employee value for firstname , middlename and lastname and save the employees.")
+public void user_enters_employee_value_for_firstname_middlename_and_lastname_and_save_the_employees(io.cucumber.datatable.DataTable dataTable) {
+    // Write code here that turns the phrase above into concrete actions
+    // For automatic transformation, change DataTable to one of
+    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
+    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
+    // Double, Byte, Short, Long, BigInteger or BigDecimal.
+    //
+    // For other transformations you can register a DataTableType.
+    throw new io.cucumber.java.PendingException();
+}
+
+page object model design pattern - as per page object model design pattern,
+for every single screen/page of the application,
+we create a page class in the framework and keep all the locators of this page in the class.
+to perform code reusability
+to reduce maintenance time
+to increase readability of the code
+
+page initialization - to initialize the page class and its elements
+we use page initializer class to declare all the objects in the same class
+we are extending this class in common methods class to initialize the page class and its elements
+and we are calling initialize object method at the time of browser launch
+so now, no need to create objects in every class, they will be used from one class itself
+
+standards of the framework -
+no data should be passed hard coded in the test cases
+data should be passed from config file or excel file, or feature file
+framework should be scalable - we should be able to add more test cases without any issue
+framework should be mature enough - we should be able to maintain the framework with minimum efforts
+it should support data driven testing - we should be able to execute the same test case with multiple sets of data
+
+
+
