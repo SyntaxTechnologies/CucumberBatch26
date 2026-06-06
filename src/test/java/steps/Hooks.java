@@ -20,7 +20,18 @@ public class Hooks extends CommonMethods {
      }
 
      @After
-     public void end(){
+     public void end(Scenario scenario){
+            //scenario class holds the information about the scenario that is currently running
+
+            byte[] pic;
+            if(scenario.isFailed()){
+                pic = takeScreenshot("failed/"+scenario.getName());
+            }else{
+                pic = takeScreenshot("passed/"+scenario.getName());
+            }
+            //it will attach the screenshot to the report, the first parameter is the byte array of the screenshot,
+         // the second parameter is the type of the file, and the third parameter is the name of the file
+            scenario.attach(pic,"image/png",scenario.getName());
             //post condition is closing the browser, so we can call the method from common methods class to do that
             closeBrowser();
      }

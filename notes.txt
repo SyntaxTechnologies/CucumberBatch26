@@ -114,5 +114,21 @@ framework should be scalable - we should be able to add more test cases without 
 framework should be mature enough - we should be able to maintain the framework with minimum efforts
 it should support data driven testing - we should be able to execute the same test case with multiple sets of data
 
+pretty keyword in plugin - to print the steps in the console in a readable format
 
+Assertions - to validate in the test cases
+1. Existence of element check - to check if the element is available or not
+2. Value of the element check - to check if the value of the element is correct or not
 
+I have added the screenshot code in the hooks class, so whenever any scenario will fail, it
+will take the screenshot and save it in the screenshots
+folder under target folder with the name of the scenario and date and time of execution.
+
+I have added maven cucumber reporting plugin in the pom.xml file to generate
+ the cucumber report after execution of the feature file.
+ this report will be having the screenshot attached to it
+and we can also see the steps in the report in a readable format
+because of the pretty keyword in the plugin.
+
+clean - to delete the target folder before every execution
+test - to execute the test cases

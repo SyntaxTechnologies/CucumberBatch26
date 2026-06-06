@@ -114,6 +114,7 @@ public class CommonMethods extends PageInitialiser{
         return picByte;
     }
 
+
     public String getTimeStamp(String pattern){
         //this method will return the timestamp which we will add in ss method
         Date date = new Date();
@@ -122,6 +123,5 @@ public class CommonMethods extends PageInitialiser{
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         return sdf.format(date);
     }
-
 
 }

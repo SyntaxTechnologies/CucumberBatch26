@@ -17,6 +17,9 @@ public class LoginPage extends CommonMethods {
     @FindBy(xpath = "//*[@type='submit']")
     public WebElement loginButton;
 
+    @FindBy(xpath = "//*[text()='Invalid credentials']")
+    public WebElement errorMessageLoc;
+
 
     public LoginPage(){
         //the code we write will be automatically called when you create an object

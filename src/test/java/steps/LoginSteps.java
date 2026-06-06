@@ -2,6 +2,7 @@ package steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,6 +50,22 @@ public class LoginSteps extends CommonMethods {
     @Then("user is able to login successfully")
     public void user_is_able_to_login_successfully() {
         System.out.println("Test passed");
+        System.out.println(10/0);
     }
 
+    @When("user enters invalid admin username and password")
+    public void user_enters_invalid_admin_username_and_password() {
+        sendText("hrm_123", loginPage.usernameField);
+        sendText("Hrm_user", loginPage.passwordField);
+    }
+
+    @Then("user is able to see error message")
+    public void user_is_able_to_see_error_message() {
+        //it will check the presence of the locator - validation type 1
+        Assert.assertTrue(loginPage.errorMessageLoc.isDisplayed());
+        //this string will store the error message from the application and then we
+        // will compare it with the expected message - validation type 2
+        String actualMessage = loginPage.errorMessageLoc.getText();
+        Assert.assertEquals("Invalid credentials", actualMessage);
+    }
 }
